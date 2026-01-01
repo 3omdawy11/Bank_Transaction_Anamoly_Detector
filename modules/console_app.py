@@ -1,3 +1,4 @@
+from modules.export_reports import ExportReports
 from .data_manager import DataManager
 from .data_preparation import DataPreparation
 from . import getChoice
@@ -30,7 +31,7 @@ class ConsoleApp:
         4. Customer Analysis
         5. Anomaly Detection
         6. Reporting
-        7. Settings
+        7. Summary
         0. Exit
         """
         print(menu)
@@ -70,14 +71,20 @@ class ConsoleApp:
             if self.feature_builder_done:
                 print("Action 4 executed.")
                 CustomerAnalysis.score_customers()
-                #
-
+            else: 
+                print("Feature building not done. Please build features first.")
             print("Action 4 executed.")
         elif number == 5:
+            CustomerAnalysis.flag_suspicious_transactions(self.dataset)
             print("Action 5 executed.")
         elif number == 6:
+            ExportReports.export_reports_menu()
+            choice = getChoice(" to select a report to export (0 to exit): ")
+
+            ExportReports.action(choice)
+
             print("Action 6 executed.")
         elif number == 7:
-            print("Action 7 executed.")
+            print("In this application you can manage data, prepare it, build features, analyze customers, detect anomalies, and generate reports.")
         else:
             print("Invalid action number.")

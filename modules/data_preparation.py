@@ -39,6 +39,13 @@ class DataPreparation:
         
         return df
     
+    def dropColumns(df, columns):
+        try: 
+            df = df.drop(columns=columns, errors='ignore')
+        except Exception as e:
+            print(f"Error dropping columns: {e}")
+        return df
+    
     @staticmethod
     def prepare_data(df):
         print(f"Initial data shape: {df.shape}")
@@ -48,6 +55,7 @@ class DataPreparation:
         df = DataPreparation.remove_duplicates(df)
         print("Data after removing missing values and duplicates:")
         df = DataPreparation.fix_data(df)
+        df = DataPreparation.dropColumns(df, ['isFlaggedFraud'])
         print(df.shape)
         df = DataPreparation.add_date_column(df)
         df = DataPreparation.reset_index(df)

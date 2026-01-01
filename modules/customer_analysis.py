@@ -1,5 +1,5 @@
-import os
-from . import pd
+
+from . import pd, os
 class CustomerAnalysis:
     
 
@@ -29,3 +29,9 @@ class CustomerAnalysis:
         print("Success! Created 'customer_risk_bands.csv'")
 
         return
+    @staticmethod
+    def flag_suspicious_transactions(df):
+         suspicious_transactions = df[df['isFraud'] == 1]
+         suspicious_transactions.to_csv('suspicious_transactions.csv', index=False)
+         print("Success! Created 'suspicious_transactions.csv'")
+        

@@ -4,6 +4,7 @@ print("Welcome to Bank Transaction Anomaly Detector")
 
 import numpy as np
 import pandas as pd
+import os
 
 
 def getChoice(extraMessage=""):
@@ -17,4 +18,4 @@ def getChoice(extraMessage=""):
 
 from .console_app import ConsoleApp
 
-__all__ = ['ConsoleApp', 'getChoice', 'np', 'pd']
+__all__ = ['ConsoleApp', 'getChoice', 'np', 'pd', 'os']

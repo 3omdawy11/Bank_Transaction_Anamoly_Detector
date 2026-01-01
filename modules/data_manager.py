@@ -1,5 +1,4 @@
-import os
-from . import getChoice, np, pd
+from . import getChoice, np, pd, os
 
 class DataManager:
    
@@ -10,7 +9,6 @@ class DataManager:
         menu = """
         Data Manager Menu:
         1. Load Dataset
-        3. Save Dataset
         0. Exit
         """
         print(menu)
