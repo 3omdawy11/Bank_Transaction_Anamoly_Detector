@@ -5,6 +5,7 @@ if __name__ == "__main__":
     app.run()
     while True:
         try:
+            app.options_menu()
             user_input = getChoice("(0 to exit): ")
             result = app.action(user_input)
             if result == 0:

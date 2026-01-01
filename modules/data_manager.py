@@ -29,7 +29,7 @@ class DataManager:
                 selected_dataset = datasets[choice - 1]
                 print(f"You selected dataset: {selected_dataset}")
                 df = pd.read_csv(os.path.join(os.path.dirname(self.file_path), '..', 'datasets', selected_dataset))
-                return df
+                return df.sample(n=10000, random_state=42)  
             else:
                 print("Invalid dataset selection.")
 

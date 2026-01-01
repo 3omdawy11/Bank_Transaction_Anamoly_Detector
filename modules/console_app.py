@@ -1,9 +1,19 @@
 from .data_manager import DataManager
+from .data_preparation import DataPreparation
 from . import getChoice
+from .feature_builder import FeatureBuilder
+from .customer_analysis import CustomerAnalysis
+from modules import feature_builder
 
 class ConsoleApp:
     dataset = None
+    cusotomer_rfm_scores = None
     data_manager = DataManager()
+    data_preparation = DataPreparation()
+    data_preparation_done = False
+    feature_builder = FeatureBuilder()
+    feature_builder_done = False
+
     def run(self):
         print("Console Application is running.")
     
@@ -11,7 +21,19 @@ class ConsoleApp:
         print("Console Application is stopping.")
 
     
-        
+    def options_menu(self):
+        menu = """
+        Main Menu:
+        1. Data Manager
+        2. Data Preparation
+        3. Feature Building
+        4. Customer Analysis
+        5. Anomaly Detection
+        6. Reporting
+        7. Settings
+        0. Exit
+        """
+        print(menu)
         
 
     def action(self, number):
@@ -27,9 +49,29 @@ class ConsoleApp:
 
         elif number == 2:
             print("Action 2 executed.")
+            if self.dataset is not None:
+                self.dataset = self.data_preparation.prepare_data(self.dataset)
+                print("Data prepared successfully.")
+                self.data_preparation_done = True
+            else:
+                print("No dataset loaded. Please load a dataset first.")
         elif number == 3:
-            print("Action 3 executed.")
+            if self.data_preparation_done:
+                print("Action 3 executed.")
+                self.feature_builder.build_customer_features(self.dataset)
+
+                print("Customer RFM scores built successfully.")
+                self.feature_builder_done = True
+            else:
+                print("Data preparation not done. Please prepare the data first.")
+                
+
         elif number == 4:
+            if self.feature_builder_done:
+                print("Action 4 executed.")
+                CustomerAnalysis.score_customers()
+                #
+
             print("Action 4 executed.")
         elif number == 5:
             print("Action 5 executed.")
