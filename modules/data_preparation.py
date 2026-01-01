@@ -32,16 +32,20 @@ class DataPreparation:
         return df
     
     def fix_data(df):
-        df = df[(df["isFraud"] == 1) | (df["isFlaggedFraud"] == 1) | 
+        try:
+            df = df[(df["isFraud"] == 1) | (df["isFlaggedFraud"] == 1) | 
             ((df["amount"] != 0) & (df["oldbalanceOrg"] - df["newbalanceOrig"] == df["amount"]) & 
              ((df["newbalanceDest"] - df["oldbalanceDest"] == df["amount"]) | (df["nameDest"].str.contains("M")))) |
             ((df["amount"] != 0) & (df["newbalanceOrig"] - df["oldbalanceOrg"] == df["amount"]) & ((df["oldbalanceDest"] - df["newbalanceDest"] == df["amount"])))]
+        except Exception as e:
+            print(f"Error fixing data: {e}")
         
         return df
     
     def dropColumns(df, columns):
+        print(f"Dropping columns: {columns}")
         try: 
-            df = df.drop(columns=columns, errors='ignore')
+            df = df.drop(columns=columns)
         except Exception as e:
             print(f"Error dropping columns: {e}")
         return df
