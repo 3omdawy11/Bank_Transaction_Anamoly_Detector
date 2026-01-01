@@ -18,13 +18,13 @@ class CustomerAnalysis:
             return customer_df
 
         print("Scoring customers...")
-        # read customer_risk_bands.csv
+
         customer_df = pd.read_csv('customer_risk_scoring.csv')
         
         
         customer_df['risk_band'] = customer_df['max_z'].apply(CustomerAnalysis.classify)
 
-        # 6. Save the risk-banded dataset
+        
         customer_df[['nameOrig', 'risk_band']].to_csv('customer_risk_bands.csv')
         print("Success! Created 'customer_risk_bands.csv'")
 

@@ -61,7 +61,7 @@ class ConsoleApp:
                 print("Action 3 executed.")
                 self.feature_builder.build_customer_features(self.dataset)
 
-                print("Customer RFM scores built successfully.")
+                print("Customer features built successfully.")
                 self.feature_builder_done = True
             else:
                 print("Data preparation not done. Please prepare the data first.")

@@ -19,7 +19,7 @@ class DataManager:
             print("Available Datasets:")
             for idx, dataset in enumerate(datasets, start=1):
                 print(f"{idx}. {dataset}")
-            # access the getChoice method from the init file
+            
             choice = getChoice(" to select a dataset (0 to exit): ")
             if choice == 0:
                 return
@@ -39,8 +39,7 @@ class DataManager:
             print("Invalid choice in Data Manager Menu.")
 
     def list_datasets(self):
-        import os
-        # datasets are inside in ../datasets/
+    
         try:
             dataset_dir = os.path.join(os.path.dirname(self.file_path), '..', 'datasets')
             files = os.listdir(dataset_dir)
